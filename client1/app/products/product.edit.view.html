@@ -1,0 +1,92 @@
+<form class="form-horizontal" ng-controller="ProductEditCtrl as editProductCtrl"
+      name="productForm" novalidate>
+    <h1>- {{ editProductCtrl.editProdMessage }} -</h1>
+
+    <fieldset>
+        <legend>zProduct Info</legend>
+        <!-- product name input field -->
+        <div class="form-group"
+             ng-class="{'has-error':productForm.inputProductName.$invalid && productForm.inputProductName.$dirty}">
+            <label for="inputProductName" class="col-md-2 control-label">Product Name</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" id="inputProductName"
+                       name="inputProductName" placeholder="Product Name (required)"
+                       ng-model="editProductCtrl.product.productName" required
+                       ng-minlength="4" ng-maxlength="24">
+            </div>
+            <!-- error messages area: -->
+            <span class="help-block has-error">
+				<span ng-show="productForm.inputProductName.$error.required &&
+						productForm.inputProductName.$dirty">
+					Product Name Required.
+				</span>
+				<span ng-show="productForm.inputProductName.$error.minlength">
+					Product Name must be 4 or more letters.
+				</span>
+				<span ng-show="productForm.inputProductName.$error.maxlength">
+					Product Name must be less than 24 letters.
+				</span>
+			</span>
+        </div>
+        <!-- product code input field -->
+        <div class="form-group"
+             ng-class="{'has-error': productForm.inputProductCode.$invalid && productForm.inputProductCode.$dirty}">
+            <label for="inputProductCode" class="col-md-2 control-label">Product Code</label>
+            <div class="col-md-4">
+                <input type="text" id="inputProductCode" name="inputProductCode"
+                       placeholder="Product Code (required)" required
+                       ng-model="editProductCtrl.product.productCode"
+                       class="form-control" ng-minlength="4" ng-maxlength="24">
+            </div>
+            <span class="has-error help-block">
+				<span ng-show="productForm.inputProductCode.$error.minlength &&
+						productForm.inputProductCode.$dirty">
+					Must be at least 4 letters.
+				</span>
+				<span ng-show="productForm.inputProductCode.$error.required && productForm.inputProductCode.$dirty">
+					Product code is required.
+				</span>
+			</span>
+        </div>
+        <!-- availability input field -->
+        <div class="form-group">
+            <label for="inputAvailabilityDate" class="control-label col-md-2">Product Availability</label>
+            <div class="col-md-4">
+                <div id="inputAvailabilityDate" class="form-control">{{ editProductCtrl.product.releaseDate | date }}</div>
+            </div>
+        </div>
+        <!-- description input field -->
+        <div class="form-group">
+            <label for="productDescription" class="control-label col-md-2">Product Description</label>
+            <div class="col-md-4">
+                <textarea name="productDescreption" id="productDescription"
+                          class="form-control" rows="3" placeholder="Product Description"
+                          ng-model="editProductCtrl.product.description"></textarea>
+                <br>
+            </div>
+        </div>
+        <!-- save button & cancel button -->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-4">
+                <span>
+                    <button class="btn btn-default" ng-disabled="productForm.$invalid"
+                            ng-click="editProductCtrl.submit()">
+                        Save
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-primary"
+                            ng-click="editProductCtrl.cancel()">
+                        Cancel
+                    </button>
+                </span>
+            </div>
+        </div>
+        <!-- error message -->
+        <div class="form-group" ng-show="editProductCtrl.message">
+            <div class="col-md-6">
+                <pre style="font: inherit">{{editProductCtrl.message}}</pre>
+            </div>
+        </div>
+    </fieldset>
+</form>

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>CEDR Product Management</title>
+
+    <!-- Style sheets -->
+    <link href="Content/bootstrap.css" rel="stylesheet"/>
+</head>
+
+<body ng-app="productManagement" ng-controller="MainCtrl as mainCtrl">
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand">CEDR Product Management</div>
+            <!-- form begins: -->
+            <form ng-hide="mainCtrl.isLoggedIn()" class="navbar-form navbar-right">
+                <div class="form-group">
+                    <input type="text" class="form-control"
+                           placeholder="email" ng-model="mainCtrl.userData.email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control"
+                           placeholder="password" ng-model="mainCtrl.userData.password">
+                </div>
+                <!-- login button -->
+                <button class="btn btn-default" type="submit" ng-click="mainCtrl.login()">Login</button>
+                <!-- register button -->
+                <button class="btn btn-default" type="submit" ng-click="mainCtrl.registerUser()">Register</button>
+                <!-- error message area -->
+                <div ng-show="mainCtrl.message">{{ mainCtrl.message }}</div>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div ng-if="mainCtrl.isLoggedIn()" ng-include="'app/products/product.edit.view.html'"></div>
+    <div ng-if="mainCtrl.isLoggedIn()" ng-include="'app/products/product.list.view.html'"></div>
+</div>
+
+<!-- Vendor Scripts -->
+<script src="Scripts/angular.js"></script>
+<script src="Scripts/angular-resource.js"></script>
+
+<!-- Application Scripts -->
+<script src="app/app.js"></script>
+<script src="common/common.ser.mod.js"></script>
+<script src="common/user.account.ser.js"></script>
+<script src="common/product.resource.js"></script>
+<script src="common/current.user.ser.js"></script>
+
+<script src="app/main.ctrl.js"></script>
+<script src="app/products/product.list.ctrl.js"></script>
+<script src="app/products/product.edit.ctrl.js"></script>
+
+</body>
+
+</html>
