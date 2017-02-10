@@ -30,6 +30,7 @@ namespace WebApp1.Controllers
 
         public AccountController()
         {
+
         }
 
         public AccountController(ApplicationUserManager userManager,

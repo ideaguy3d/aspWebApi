@@ -1,0 +1,11 @@
+
+2-2-2017@1:01pm:
+~ this is The Original "ng front to back with web api" project that I uploaded to visual studio
+team services into the prac4 repo that Mike A and I downloaded to his computer so he can get it 
+working as well.  
+
+
+
+
+
+//
